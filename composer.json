@@ -1,0 +1,27 @@
+{
+  "name": "new-inventor/form",
+  "require": {
+    "new-inventor/abstractions": "*",
+    "new-inventor/config-tool": "*",
+    "new-inventor/patterns": "*",
+    "new-inventor/php-type-checker": "*",
+    "new-inventor/template": "*",
+    "myclabs/deep-copy": "^1.5"
+  },
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "NewInventor\\Form\\": "src/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ionov George",
+      "email": "newinventor20@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
