@@ -8,11 +8,10 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\TypeChecker\SimpleTypes;
 use NewInventor\TypeChecker\TypeChecker;
 
-class CheckBoxSet extends ListField implements FieldInterface
+class CheckBoxSet extends ListField
 {
     /**
      * Select constructor.

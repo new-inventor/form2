@@ -24,23 +24,21 @@ class FormRenderer extends BaseRenderer
     use Traits\Children;
     
     /** @inheritdoc */
-    public function render(ObjectInterface $form)
+    public function getString()
     {
         /** @var FormInterface $form */
-        $templateStr = Config::get(['renderer', 'templates', $form->getTemplate(), 'form']);
+        $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'form']);
         $template = new Template($templateStr);
         
-        return $template->getString($this, $form);
+        echo $template->getString($this);
     }
     
     /**
-     * @param FormInterface $form
-     *
      * @return string
      */
-    public function start(FormInterface $form)
+    public function start()
     {
-        return '<form ' . $this->attributes($form) . '>';
+        return '<form ' . $this->attributes() . '>';
     }
     
     /**
@@ -53,69 +51,41 @@ class FormRenderer extends BaseRenderer
     }
     
     /**
-     * @param FormInterface $form
-     *
      * @return string
      */
-    public function handlers(FormInterface $form)
+    public function result()
     {
-        return implode('', $form->handlers()->getAll());
-    }
-    
-    /**
-     * @param FormInterface $form
-     *
-     * @return string
-     */
-    public function result(FormInterface $form)
-    {
-        if ($form->getStatus() == Form::STATUS_SHOW_RESULT) {
-            $templateStr = Config::get(['renderer', 'templates', $form->getTemplate(), 'result']);
-            $template = new Template($templateStr);
-
-            return $template->getString($this, $form);
-        }
         return '';
     }
     
-    public function className(FormInterface $form)
+    public function className()
     {
-        $result = $form->getResult();
-        if (isset($result['success'])) {
-            return $result['success'] ? 'success' : 'danger';
-        }
         return '';
     }
 
-    public function message(FormInterface $form)
+    public function message()
     {
-        $result = $form->getResult();
-        if (isset($result['message'])) {
-            return $result['message'];
-        }
         return '';
     }
     
     /**
-     * @param FormInterface $form
-     *
      * @return string
      */
-    public function scripts(FormInterface $form)
+    public function scripts()
     {
         $composerPath = $_SERVER['DOCUMENT_ROOT'] . '/composer.json';
         $composerConfig = json_decode(file_get_contents($composerPath), true);
         $vendorFolder = $composerConfig['config']['vendor-dir'];
         
         $res = '';
-        if ($form->showJQuery()) {
-            if ($this->pingJquery()) {
-                $res .= '<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>';
-            } else {
-                $res .= "<script src='{$vendorFolder}/jquery/jquery/jquery-1.12.1.min.js'></script>";
-            }
-        }
-        $res .= "<script src='{$vendorFolder}/new-inventor/form/src/assets/default.js'></script>";
+//        if ($this->object->showJQuery()) {
+//            if ($this->pingJquery()) {
+//                $res .= '<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>';
+//            } else {
+//                $res .= "<script src='{$vendorFolder}/jquery/jquery/jquery-1.12.1.min.js'></script>";
+//            }
+//        }
+//        $res .= "<script src='{$vendorFolder}/new-inventor/form/src/assets/default.js'></script>";
         return $res;
     }
     

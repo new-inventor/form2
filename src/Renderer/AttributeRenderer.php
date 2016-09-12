@@ -16,11 +16,11 @@ use NewInventor\Template\Template;
 
 class AttributeRenderer extends BaseRenderer
 {
-    public function render(ObjectInterface $attribute)
+    public function getString()
     {
         $template = null;
         /** @var KeyValue $attribute */
-        if ($attribute->canBeShort()) {
+        if ($this->object->canBeShort()) {
             $template = new Template(Config::get(['renderer', 'templates', 'default', 'shortAttribute'], ''));
         } else {
             $template = new Template(Config::get(['renderer', 'templates', 'default', 'attribute'], ''));
@@ -29,16 +29,16 @@ class AttributeRenderer extends BaseRenderer
             return '';
         }
         
-        return $template->getString($this, $attribute);
+        return $template->getString($this);
     }
     
-    public function name(KeyValue $pair)
+    public function name()
     {
-        return $pair->getName();
+        return $this->object->getName();
     }
     
-    public function value(KeyValue $pair)
+    public function value()
     {
-        return (string)$pair->getValue();
+        return (string)$this->object->getValue();
     }
 }

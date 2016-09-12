@@ -8,8 +8,6 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\Form\Interfaces\FieldInterface;
-
-class RadioSet extends ListField implements FieldInterface
+class RadioSet extends ListField
 {
 } 

@@ -16,17 +16,15 @@ use NewInventor\Form\Renderer\AttributeRenderer;
 trait Attributes
 {
     /**
-     * @param FormObjectInterface $object
-     *
      * @return mixed
      */
-    public function attributes(FormObjectInterface $object)
+    public function attributes()
     {
-        $renderer = new AttributeRenderer();
-        $name = new KeyValue('name', $object->getFullName());
-        $attrs = [$renderer->render($name)];
-        foreach ($object->attributes() as $attr) {
-            $attrs[] = $renderer->render($attr);
+        $renderer = new AttributeRenderer(new KeyValue('name', $this->object->getFullName()));
+        $attrs = [$renderer->getString()];
+        foreach ($this->object->attributes() as $attr) {
+            $renderer = new AttributeRenderer($attr);
+            $attrs[] = $renderer->getString();
         }
         
         return implode(' ', $attrs);

@@ -2,7 +2,7 @@
 return [
     'templates' => [
         'default' => [
-            'form' => '{result}{errors}{label}<div>{start}{children}{handlers}{end}</div>{scripts}',
+            'form' => '{result}{errors}{label}<div>{start}{children}{end}</div>{scripts}',
             'block' => '{label}<div>{children}</div>',
             'field' => /** @lang text */
                 '<div><label {forField}>{title}</label>{field}</div>{errors}',

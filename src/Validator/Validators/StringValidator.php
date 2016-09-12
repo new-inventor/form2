@@ -9,11 +9,10 @@ namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
 use NewInventor\Form\Validator\Exceptions\String;
-use NewInventor\Form\Validator\ValidatorInterface;
 use NewInventor\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\TypeChecker\TypeChecker;
 
-class StringValidator extends AbstractValidator implements ValidatorInterface
+class StringValidator extends AbstractValidator
 {
     protected $length;
     protected $minLength;

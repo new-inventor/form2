@@ -7,9 +7,8 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\Form\Interfaces\FieldInterface;
 
-class Select extends CheckBoxSet implements FieldInterface
+class Select extends CheckBoxSet
 {
     /**
      * @inheritdoc
@@ -20,32 +19,32 @@ class Select extends CheckBoxSet implements FieldInterface
         if ($this->isMultiple()) {
             $name .= '[]';
         }
-        
+
         return $name;
     }
-    
+
     public function isMultiple()
     {
         return $this->getAttribute('multiple') !== null;
     }
-    
+
     /**
      * @return $this
      */
     public function multiple()
     {
         $this->attribute('multiple');
-        
+
         return $this;
     }
-    
+
     /**
      * @return $this
      */
     public function single()
     {
         $this->attributes()->delete('multiple');
-        
+
         return $this;
     }
 }

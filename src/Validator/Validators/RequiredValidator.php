@@ -9,9 +9,8 @@ namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
 use NewInventor\Form\Validator\Exceptions\Required\NotFilledUp;
-use NewInventor\Form\Validator\ValidatorInterface;
 
-class RequiredValidator extends AbstractValidator implements ValidatorInterface
+class RequiredValidator extends AbstractValidator
 {
     public function validateValue($value)
     {

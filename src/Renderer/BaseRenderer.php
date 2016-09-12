@@ -14,19 +14,37 @@ use NewInventor\Patterns\SingletonTrait;
 class BaseRenderer extends Object implements RendererInterface
 {
     use SingletonTrait;
-    const FIELD = 'field';
-    const BLOCK = 'block';
-    const FORM = 'form';
     
     protected static $borders;
-    
-    public function __construct()
+    public $object;
+    protected $params;
+
+    /**
+     * BaseRenderer constructor.
+     * @param ObjectInterface $object
+     * @param array $params
+     */
+    public function __construct(ObjectInterface $object, array $params = [])
     {
+        $this->object = $object;
+        $this->params = $params;
     }
-    
+
     /** @inheritdoc */
-    public function render(ObjectInterface $object)
+    public function render()
+    {
+        echo $this->getString();
+    }
+
+    /** @inheritdoc */
+    public function getString()
     {
         return '';
+    }
+
+    /** @inheritdoc */
+    public function __toString()
+    {
+        return $this->getString();
     }
 }

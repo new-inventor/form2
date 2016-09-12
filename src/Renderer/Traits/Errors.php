@@ -20,41 +20,38 @@ use NewInventor\Template\Template;
  * @package NewInventor\Form\Renderer\Traits
  *
  * @method getReplacements(array $placeholders, $object)
+ * @property $object
  */
 trait Errors
 {
     /**
-     * @param FormInterface|BlockInterface|FieldInterface $object
-     *
      * @return string
      */
-    public function errors($object)
+    public function errors()
     {
-        $errors = $object->getErrors();
+        $errors = $this->object->getErrors();
         if (empty($errors)) {
             return '';
         }
         
         $templateStr = Config::find(
             ['renderer'],
-            ['templates', $object->getTemplate(), 'errors'],
-            $object->getClass(),
+            ['templates', $this->object->getTemplate(), 'errors'],
+            $this->object->getClass(),
             ''
         );
         $template = new Template($templateStr);
         
-        return $template->getString($this, $object);
+        return $template->getString($this, $this->object);
     }
     
     /**
-     * @param FormInterface|BlockInterface|FieldInterface $object
-     *
      * @return string
      */
-    public function errorsStr($object)
+    public function errorsStr()
     {
         $errorDelimiter = Config::get(['renderer', 'errors', 'delimiter']);
-        $errorsStr = implode($errorDelimiter, $object->getErrors());
+        $errorsStr = implode($errorDelimiter, $this->object->getErrors());
         
         return $errorsStr;
     }

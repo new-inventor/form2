@@ -24,26 +24,22 @@ use NewInventor\Template\Template;
 trait Label
 {
     /**
-     * @param FormInterface|BlockInterface|FieldInterface $object
-     *
      * @return string
      */
-    public function label($object)
+    public function label()
     {
-        $templateStr = Config::find(['renderer'], ['templates', $object->getTemplate(), 'label'], $object->getClass(),
+        $templateStr = Config::find(['renderer'], ['templates', $this->object->getTemplate(), 'label'], $this->object->getClass(),
             '');
         $template = new Template($templateStr);
         
-        return $template->getString($this, $object);
+        return $template->getString($this);
     }
     
     /**
-     * @param FormInterface|BlockInterface|FieldInterface $object
-     *
      * @return string
      */
-    public function title($object)
+    public function title()
     {
-        return $object->getTitle();
+        return $this->object->getTitle();
     }
 }

@@ -9,11 +9,10 @@
 namespace NewInventor\Form\Field;
 
 
-use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\TypeChecker\SimpleTypes;
 use NewInventor\TypeChecker\TypeChecker;
 
-class CheckBox extends AbstractField implements FieldInterface
+class CheckBox extends AbstractField
 {
     /**
      * AbstractField constructor.

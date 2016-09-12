@@ -26,76 +26,72 @@ class FieldRenderer extends BaseRenderer
     use Traits\Repeatable;
     
     /** @inheritdoc */
-    public function render(ObjectInterface $field)
+    public function getString()
     {
         /** @var FieldInterface $field */
-        if ($field->isRepeatable()) {
-            $templateStr = Config::get(['renderer', 'templates', $field->getTemplate(), 'repeatFiled']);
+        if ($this->object->isRepeatable()) {
+            $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'repeatFiled']);
         } else {
-            $templateStr = Config::get(['renderer', 'templates', $field->getTemplate(), 'field']);
+            $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'field']);
         }
         $template = new Template($templateStr);
         
-        return $template->getString($this, $field);
+        return $template->getString($this);
     }
     
-    public function forField(FieldInterface $field)
+    public function forField()
     {
-        return 'for="' . $field->getId() . '"';
+        return 'for="' . $this->object->getId() . '"';
     }
     
     /**
-     * @param FieldInterface $field
-     *
      * @return string
      */
-    public function field(FieldInterface $field)
+    public function field()
     {
         $fieldStr = '';
-        if ($field instanceof Field\CheckBox) {
-            $fieldStr = $this->checkBox($field);
-        } elseif ($field instanceof Field\Select) {
-            $fieldStr = $this->select($field);
-        } elseif ($field instanceof Field\CheckBoxSet) {
-            $fieldStr = $this->checkSet($field);
-        } elseif ($field instanceof Field\Input) {
-            $fieldStr = $this->input($field);
-        } elseif ($field instanceof Field\RadioSet) {
-            $fieldStr = $this->checkSet($field);
-        } elseif ($field instanceof Field\TextArea) {
-            $fieldStr = $this->textArea($field);
+        if ($this->object instanceof Field\CheckBox) {
+            $fieldStr = $this->checkBox($this->object);
+        } elseif ($this->object instanceof Field\Select) {
+            $fieldStr = $this->select($this->object);
+        } elseif ($this->object instanceof Field\CheckBoxSet) {
+            $fieldStr = $this->checkSet($this->object);
+        } elseif ($this->object instanceof Field\Input) {
+            $fieldStr = $this->input($this->object);
+        } elseif ($this->object instanceof Field\RadioSet) {
+            $fieldStr = $this->checkSet($this->object);
+        } elseif ($this->object instanceof Field\TextArea) {
+            $fieldStr = $this->textArea($this->object);
         }
         
         return $fieldStr;
     }
     
-    public function checkBox(Field\CheckBox $field)
+    public function checkBox()
     {
-        $checked = $field->getValue() ? ' checked' : '';
+        $checked = $this->object->getValue() ? ' checked' : '';
         
-        return "<input {$this->attributes($field)}{$checked} />";
+        return "<input {$this->attributes($this->object)}{$checked} />";
     }
     
     /**
-     * @param Field\ListField $field
-     *
      * @return string
      */
-    public function checkSet(Field\ListField $field)
+    public function checkSet()
     {
-        $templateStr = Config::get(['renderer', 'templates', $field->getTemplate(), 'checkSet']);
+        $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'checkSet']);
         $template = new Template($templateStr);
         
-        return $template->getString($this, $field);
+        return $template->getString($this);
     }
     
-    public function options(Field\ListField $field)
+    public function options()
     {
-        $templateStr = Config::get(['renderer', 'templates', $field->getTemplate(), 'checkSetOption']);
+        $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'checkSetOption']);
         $template = new Template($templateStr);
         $options = '';
-        foreach ($field->options() as $option) {
-            $options .= $template->getString($this, $field, $option);
+        foreach ($this->object->options() as $option) {
+            $options .= $template->getString($this, $option);
         }
         
         return $options;
@@ -103,69 +99,68 @@ class FieldRenderer extends BaseRenderer
     
     /**
      * @param array $placeholders
-     * @param FieldInterface $field
      * @param array $option
      *
      * @return array
      */
-    public function getOptionReplacements(array $placeholders, FieldInterface $field, array $option)
+    public function getOptionReplacements(array $placeholders, array $option)
     {
         $res = [];
         foreach ($placeholders as $placeholder) {
-            $res[] = $this->$placeholder($field, $option);
+            $res[] = $this->$placeholder($this->object, $option);
         }
         
         return $res;
     }
     
-    public function option(Field\ListField $field, array $option = [])
+    public function option(array $option = [])
     {
-        $checked = $field->optionSelected($option['value']) ? ' checked' : '';
+        $checked = $this->object->optionSelected($option['value']) ? ' checked' : '';
         
         $res = /** @lang text */
-            "<input {$this->renderOptionAttributes($field)} value=\"{$option['value']}\"{$checked} />";
+            "<input {$this->renderOptionAttributes()} value=\"{$option['value']}\"{$checked} />";
         
         return $res;
     }
     
-    public function renderOptionAttributes(Field\ListField $field)
+    public function renderOptionAttributes()
     {
-        $renderer = new AttributeRenderer();
         $asArray = '';
         $type = '';
-        if ($field instanceof Field\CheckBoxSet) {
+        if ($this->object instanceof Field\CheckBoxSet) {
             $type = 'checkbox';
             $asArray = '[]';
-        } elseif ($field instanceof Field\RadioSet) {
+        } elseif ($this->object instanceof Field\RadioSet) {
             $type = 'radio';
         }
-        $type = new KeyValue('type', $type);
-        $name = new KeyValue('name', $field->getFullName() . $asArray);
-        $attrs = [$renderer->render($type), $renderer->render($name)];
-        foreach ($field->attributes() as $attr) {
-            $attrs[] = $renderer->render($attr);
+        $type = new AttributeRenderer(new KeyValue('type', $type));
+        $name = new AttributeRenderer(new KeyValue('name', $this->object->getFullName() . $asArray));
+        $attrs = [$type->render(), $name->render()];
+        foreach ($this->object->attributes() as $attr) {
+            $renderer = new AttributeRenderer($attr);
+            $attrs[] = $renderer->render();
         }
         
         return implode(' ', $attrs);
     }
     
-    public function optionTitle(Field\ListField $field, array $option = [])
+    public function optionTitle(array $option = [])
     {
         return $option['title'];
     }
     
-    public function input(FormObjectInterface $field)
+    public function input()
     {
         
-        return "<input {$this->attributes($field)}/>";
+        return "<input {$this->attributes()}/>";
     }
     
-    public function select(Field\Select $field)
+    public function select()
     {
-        $res = '<select ' . $this->attributes($field) . '>';
-        foreach ($field->options() as $option) {
+        $res = '<select ' . $this->attributes() . '>';
+        foreach ($this->object->options() as $option) {
             $optionString = '<option value="' . $option['value'] . '"';
-            if ($field->optionSelected($option['value'])) {
+            if ($this->object->optionSelected($option['value'])) {
                 $optionString .= ' selected="selected"';
             }
             $optionString .= '>' . $option['title'] . '</option>';
@@ -176,8 +171,8 @@ class FieldRenderer extends BaseRenderer
         return $res;
     }
     
-    public function textArea(Field\TextArea $field)
+    public function textArea()
     {
-        return "<textarea {$this->attributes($field)}>{$field->getValue()}</textarea>";
+        return "<textarea {$this->attributes()}>{$this->object->getValue()}</textarea>";
     }
 }

@@ -17,6 +17,10 @@ use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\Renderer\Traits;
 use NewInventor\Template\Template;
 
+/**
+ * Class BlockRenderer
+ * @package NewInventor\Form\Renderer
+ */
 class BlockRenderer extends BaseRenderer
 {
     use Traits\Errors;
@@ -25,15 +29,15 @@ class BlockRenderer extends BaseRenderer
     use Traits\Repeatable;
     
     /** @inheritdoc */
-    public function render(ObjectInterface $block)
+    public function getString()
     {
         /** @var BlockInterface $block */
-        if ($block->isRepeatable()) {
-            $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'repeatBlock']);
-        } elseif ($block->isRepeatableContainer()) {
-            $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'repeatContainer']);
+        if ($this->object->isRepeatable()) {
+            $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'repeatBlock']);
+        } elseif ($this->object->isRepeatableContainer()) {
+            $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'repeatContainer']);
         } else {
-            $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'block']);
+            $templateStr = Config::get(['renderer', 'templates', $this->object->getTemplate(), 'block']);
         }
         
         $template = new Template($templateStr);
@@ -42,31 +46,29 @@ class BlockRenderer extends BaseRenderer
     }
     
     /**
-     * @param BlockInterface $block
-     *
      * @return string
      */
-    public function repeatScript(BlockInterface $block)
+    public function repeatScript()
     {
         $deepCopy = new DeepCopy();
         /** @var BlockInterface|FieldInterface|RenderableInterface $childCopy */
-        $childCopy = $deepCopy->copy($block->getRepeatObject());
+        $childCopy = $deepCopy->copy($this->object->getRepeatObject());
         $childCopy->clear();
-        $childCopy->setParent($block);
+        $childCopy->setParent($this->object);
         /** @var BlockInterface|FieldInterface $child */
-        $child = $block->child(0);
+        $child = $this->object->child(0);
         $res = '<script>
 $(document).ready(function(e){
     $("[' . $this->containerSelector() . ']").repeatContainer({
         containerSelector : \'[' . $this->containerSelector() . ']\',
         blockSelector : \'[' . $this->blockSelector() . ']\',
-        actionsSelector : \'[' . $this->actionsBlockSelector() . '="' . $block->getName() . '"]\',
+        actionsSelector : \'[' . $this->actionsBlockSelector() . '="' . $this->object->getName() . '"]\',
         addSelector : \'[' . $this->addActionSelector() . ']\',
         deleteSelector : \'[' . $this->deleteActionSelector() . ']\',
         dummyObject: \'' . $childCopy . '\',
-        addButton: \'' . $this->addButton($block, false) . '\',
-        deleteButton: \'' . $this->deleteButton($block, false) . '\',
-        fullActionsBlock: \'' . $this->actions($child, false) . '\'
+        addButton: \'' . $this->addButton(false) . '\',
+        deleteButton: \'' . $this->deleteButton(false) . '\',
+        fullActionsBlock: \'' . $this->actions(false) . '\'
     });
 });
 </script>';

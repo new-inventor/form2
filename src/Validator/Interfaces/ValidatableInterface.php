@@ -5,7 +5,7 @@
  * Time: 16:57
  */
 
-namespace NewInventor\Form\Validator;
+namespace NewInventor\Form\Validator\Interfaces;
 
 interface ValidatableInterface
 {

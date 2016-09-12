@@ -5,7 +5,7 @@
  * Time: 16:48
  */
 
-namespace NewInventor\Form\Validator;
+namespace NewInventor\Form\Validator\Interfaces;
 
 use NewInventor\TypeChecker\Exception\ArgumentTypeException;
 

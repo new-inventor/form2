@@ -3,10 +3,20 @@
 namespace NewInventor\Form\Field;
 
 use NewInventor\Form\Abstraction\KeyValue;
-use NewInventor\Form\Interfaces\FieldInterface;
 
-class Input extends AbstractField implements FieldInterface
+class Input extends AbstractField
 {
+    /**
+     * Input constructor.
+     * @param string $name
+     * @param string $value
+     */
+    public function __construct($name, $value = '')
+    {
+        parent::__construct($name, $value);
+        $this->type('text');
+    }
+
     /** @inheritdoc */
     public function setValue($value)
     {

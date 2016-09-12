@@ -12,16 +12,17 @@ use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\Interfaces\FormInterface;
 use NewInventor\Form\Interfaces\FormObjectInterface;
 use NewInventor\Form\Renderer\RenderableInterface;
-use NewInventor\Form\Validator\ValidatableInterface;
+use NewInventor\Form\Renderer\RenderFactory;
+use NewInventor\Form\Validator\Interfaces\ValidatableInterface;
 use NewInventor\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\TypeChecker\TypeChecker;
 
-abstract class FormObject extends NamedObject implements FormObjectInterface, ValidatableInterface, RenderableInterface
+abstract class FormObject extends NamedObject implements FormObjectInterface, ValidatableInterface , RenderableInterface
 {
     /** @var ObjectListInterface|RenderableInterface */
     private $attrs;
     /** @var string */
-    private $title;
+    private $title = '';
     /** @var array */
     protected $errors = [];
     /** @var bool */
@@ -51,6 +52,11 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
         parent::__construct($name);
         $this->isValid = true;
         $this->templateName = self::DEFAULT_TEMPLATE;
+    }
+
+    public static function make($name)
+    {
+        return new static($name);
     }
     
     /**
@@ -214,7 +220,7 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
      */
     public function getString()
     {
-        return '';
+        return RenderFactory::make()->get($this)->getString();
     }
     
     /** @inheritdoc */
@@ -276,7 +282,7 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
         
         return $errors;
     }
-    
+
     public function prepareErrors(array $errors = [])
     {
         return $errors;

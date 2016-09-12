@@ -80,11 +80,6 @@ class Form extends Block implements FormInterface, MethodsInterface
         }
         $this->children()->setElementClasses([Block::getClass(), AbstractField::getClass()]);
     }
-
-    public static function make($name, $action = '')
-    {
-        return new static($name, $action);
-    }
     
     /**
      * @inheritdoc
@@ -146,12 +141,4 @@ class Form extends Block implements FormInterface, MethodsInterface
         
         return $res;
     }
-    
-    /**
-     * @inheritdoc
-     */
-    public function getString()
-    {
-        $renderer = new FormRenderer();
-        return $renderer->render($this);
-    }}
+}

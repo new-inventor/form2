@@ -9,13 +9,12 @@ namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
 use NewInventor\Form\Validator\Exceptions\Email\NotValid;
-use NewInventor\Form\Validator\ValidatorInterface;
 
-class EmailValidator extends AbstractValidator implements ValidatorInterface
+class EmailValidator extends AbstractValidator
 {
     public function validateValue($value)
     {
-        if (mb_strlen($value) == 0) {
+        if (mb_strlen($value) === 0) {
             return true;
         }
         if(filter_var($value, FILTER_VALIDATE_EMAIL) === $value){

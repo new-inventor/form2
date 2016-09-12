@@ -9,11 +9,10 @@ namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
 use NewInventor\Form\Validator\Exceptions\Integer;
-use NewInventor\Form\Validator\ValidatorInterface;
 use NewInventor\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\TypeChecker\TypeChecker;
 
-class IntegerValidator extends AbstractValidator implements ValidatorInterface
+class IntegerValidator extends AbstractValidator
 {
     protected $min;
     protected $max;
@@ -32,11 +31,11 @@ class IntegerValidator extends AbstractValidator implements ValidatorInterface
         }
         $value = (string)$value;
         $testValue = (string)((int)((string)$value));
-        if (mb_strlen($value) != mb_strlen($testValue)) {
+        if (mb_strlen($value) !== mb_strlen($testValue)) {
             throw new Integer\Base($this->objectName);
         }
         $value = (int)$value;
-        if (isset($this->min) && isset($this->max) && ($value < $this->min || $value > $this->max)) {
+        if (isset($this->min, $this->max) && ($value < $this->min || $value > $this->max)) {
             throw new Integer\Range($this->objectName, $this->min, $this->max, $this->rangeMessage);
         }
         if (isset($this->min) && $value < $this->min) {

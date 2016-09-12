@@ -451,13 +451,4 @@ class Block extends FormObject implements BlockInterface
     {
         $this->repeatObject = $repeatObject;
     }
-    
-    /**
-     * @inheritdoc
-     */
-    public function getString()
-    {
-        $renderer = new BlockRenderer();
-        return $renderer->render($this);
-    }
 }

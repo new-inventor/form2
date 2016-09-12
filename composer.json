@@ -1,4 +1,10 @@
 {
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/new-inventor/value-validator.git"
+    }
+  ],
   "name": "new-inventor/form",
   "require": {
     "new-inventor/abstractions": "*",
@@ -6,6 +12,7 @@
     "new-inventor/patterns": "*",
     "new-inventor/php-type-checker": "*",
     "new-inventor/template": "*",
+    "new-inventor/value-validator": "*",
     "myclabs/deep-copy": "^1.5"
   },
   "config": {

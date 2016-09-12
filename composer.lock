@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cca6909d72bf58c0291962206b8294c2",
-    "content-hash": "11755f7d740d356a3afb175e16c7e495",
+    "hash": "acb4b737c8cc9c552338d631bbde7a71",
+    "content-hash": "59c5866b0b75323845adf67f2e59df38",
     "packages": [
         {
             "name": "myclabs/deep-copy",
@@ -242,6 +242,40 @@
             ],
             "description": "Template class for string replacements",
             "time": "2016-04-25 12:05:27"
+        },
+        {
+            "name": "new-inventor/value-validator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/new-inventor/value-validator.git",
+                "reference": "a852dd6c3894262ff89aec0e6aab7d1904279ccd"
+            },
+            "require": {
+                "new-inventor/abstractions": "*",
+                "new-inventor/php-type-checker": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NewInventor\\ValueValidator\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Georgy Ionov",
+                    "email": "newinventor20@gmail.com"
+                }
+            ],
+            "description": "Validates values",
+            "time": "2016-04-04 13:17:07"
         }
     ],
     "packages-dev": [],

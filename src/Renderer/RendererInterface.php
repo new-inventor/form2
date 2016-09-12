@@ -7,9 +7,14 @@ use NewInventor\Abstractions\Interfaces\ObjectInterface;
 interface RendererInterface
 {
     /**
-     * @param ObjectInterface $handler
-     *
      * @return string
      */
-    public function render(ObjectInterface $handler);
+    public function getString();
+
+    /**
+     * @return string
+     */
+    public function __toString();
+
+    public function render();
 }

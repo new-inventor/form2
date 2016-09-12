@@ -15,12 +15,10 @@ use NewInventor\Form\Interfaces\FormInterface;
 trait Children
 {
     /**
-     * @param FormInterface|BlockInterface $object
-     *
      * @return string
      */
-    public function children($object)
+    public function children()
     {
-        return implode('', $object->children()->getAll());
+        return implode('', $this->object->children()->getAll());
     }
 }

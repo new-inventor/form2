@@ -24,17 +24,16 @@ use NewInventor\TypeChecker\TypeChecker;
 trait Repeatable
 {
     /**
-     * @param BlockInterface|FieldInterface $block
      * @param bool $check
      *
      * @return string
      */
-    public function actions($block, $check = true)
+    public function actions($check = true)
     {
-        $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'repeatActionsBlock']);
+        $templateStr = Config::get(['renderer', 'templates', $this->block->getTemplate(), 'repeatActionsBlock']);
         $template = new Template($templateStr);
         
-        return $template->getString($this, $block, $check);
+        return $template->getString($this, $check);
     }
     
     /**
@@ -43,31 +42,30 @@ trait Repeatable
      *
      * @return string
      */
-    public function addButton($block, $check = true)
+    public function addButton($check = true)
     {
         $res = '';
-        if (((int)$block->getName() == count($block->getParent()->children()) - 1) || !$check) {
-            $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'addButton']);
+        if (((int)$this->block->getName() == count($this->block->getParent()->children()) - 1) || !$check) {
+            $templateStr = Config::get(['renderer', 'templates', $bthis->lock->getTemplate(), 'addButton']);
             $template = new Template($templateStr);
-            $res = $template->getString($this, $block);
+            $res = $template->getString($this);
         }
         
         return $res;
     }
     
     /**
-     * @param BlockInterface|FieldInterface $block
      * @param bool $check
      *
      * @return string
      */
-    public function deleteButton($block, $check = true)
+    public function deleteButton($check = true)
     {
         $res = '';
-        if (((int)$block->getName() != 0 || count($block->getParent()->children()) > 1) || !$check) {
-            $templateStr = Config::get(['renderer', 'templates', $block->getTemplate(), 'deleteButton']);
+        if (((int)$this->block->getName() != 0 || count($this->block->getParent()->children()) > 1) || !$check) {
+            $templateStr = Config::get(['renderer', 'templates', $this->block->getTemplate(), 'deleteButton']);
             $template = new Template($templateStr);
-            $res = $template->getString($this, $block);
+            $res = $template->getString($this);
         }
         
         return $res;
@@ -111,12 +109,10 @@ trait Repeatable
     }
     
     /**
-     * @param FieldInterface|BlockInterface $object
-     *
      * @return string
      */
-    public function name($object)
+    public function name()
     {
-        return $object->getParent()->getName();
+        return $this->object->getParent()->getName();
     }
 }

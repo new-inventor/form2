@@ -29,7 +29,7 @@ interface FormObjectInterface extends NamedObjectInterface
     public function end();
     
     /**
-     * @return ObjectListInterface
+     * @return ObjectListInterface|\Iterator
      */
     public function attributes();
     
