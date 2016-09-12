@@ -6,7 +6,6 @@ return [
             'block' => '{label}<div>{children}</div>',
             'field' => /** @lang text */
                 '<div><label {forField}>{title}</label>{field}</div>{errors}',
-            'handler' => '<div>{handler}</div>',
             'errors' => [
                 'default' => '<span>{errorsStr}</span>',
                 'form' => '<div>{errorsStr}</div>',
@@ -48,6 +47,5 @@ return [
         \NewInventor\Form\Form::getClass() => 'form',
         \NewInventor\Form\Block::getClass() => 'block',
         \NewInventor\Form\Field\AbstractField::getClass() => 'field',
-        \NewInventor\Form\Handler::getClass() => 'handler',
     ]
 ];
