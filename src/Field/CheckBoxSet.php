@@ -19,11 +19,10 @@ class CheckBoxSet extends ListField
      * @param array|null $options
      * @param string $name
      * @param string|array|null $value
-     * @param string $title
      */
-    public function __construct($name, $value = '', $title = '', array $options = [])
+    public function __construct($name, $value = '', array $options = [])
     {
-        parent::__construct($name, null, $title, $options);
+        parent::__construct($name, null, $options);
         $this->setValue($value);
     }
     
@@ -55,7 +54,7 @@ class CheckBoxSet extends ListField
     {
         $values = $this->getValue();
         if (isset($values)) {
-            return array_search($value, $values) !== false;
+            return in_array($value, $values, false) !== false;
         }
         return false;
     }

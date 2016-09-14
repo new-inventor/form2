@@ -25,11 +25,10 @@ abstract class ListField extends AbstractField
      * @param array|null $options
      * @param string $name
      * @param string|null $value
-     * @param string $title
      */
-    public function __construct($name, $value = '', $title = '', array $options = null)
+    public function __construct($name, $value = '', array $options = null)
     {
-        parent::__construct($name, $value, $title);
+        parent::__construct($name, $value);
         $this->options = new ObjectList();
         if (isset($options)) {
             $this->addOptionArray($options);

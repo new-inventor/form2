@@ -26,7 +26,7 @@ trait Attributes
             $renderer = new AttributeRenderer($attr);
             $attrs[] = $renderer->getString();
         }
-        
+
         return implode(' ', $attrs);
     }
 }

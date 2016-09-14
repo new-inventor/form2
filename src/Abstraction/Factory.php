@@ -14,16 +14,26 @@ use NewInventor\Form\Interfaces\FactoryInterface;
 abstract class Factory implements FactoryInterface
 {
     /**
+     * @param mixed $object
+     * @param array ...$params
+     *
      * @return mixed
      */
-    public static function make()
+    public static function make($object, ...$params)
     {
-        return new static();
+        $factory = new static();
+        return $factory->get($object, $params);
     }
 
-    public function get($object, ...$params)
+    /**
+     * @param mixed $object
+     * @param array ...$params
+     *
+     * @return object
+     */
+    public function get($object, $params)
     {
-        $class = static::getClassForObject($object, $params);
+        $class = $this->getClassForObject($object, $params);
 
         $reflector = new \ReflectionClass($class);
         return $reflector->newInstanceArgs($params);

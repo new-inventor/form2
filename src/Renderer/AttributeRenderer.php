@@ -20,7 +20,7 @@ class AttributeRenderer extends BaseRenderer
     {
         $template = null;
         /** @var KeyValue $attribute */
-        if ($this->object->canBeShort()) {
+        if ($this->object->isCanBeShort()) {
             $template = new Template(Config::get(['renderer', 'templates', 'default', 'shortAttribute'], ''));
         } else {
             $template = new Template(Config::get(['renderer', 'templates', 'default', 'attribute'], ''));
@@ -34,7 +34,7 @@ class AttributeRenderer extends BaseRenderer
     
     public function name()
     {
-        return $this->object->getName();
+        return (string)$this->object->getName();
     }
     
     public function value()

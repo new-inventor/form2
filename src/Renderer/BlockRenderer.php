@@ -42,7 +42,7 @@ class BlockRenderer extends BaseRenderer
         
         $template = new Template($templateStr);
         
-        return $template->getString($this, $block);
+        return $template->getString($this);
     }
     
     /**

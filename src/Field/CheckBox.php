@@ -19,11 +19,10 @@ class CheckBox extends AbstractField
      *
      * @param string $name
      * @param bool|null $value
-     * @param string $title
      */
-    public function __construct($name, $value = false, $title = '')
+    public function __construct($name, $value = false)
     {
-        parent::__construct($name, $value, $title);
+        parent::__construct($name, $value);
         $this->attribute('type', 'checkbox');
     }
     

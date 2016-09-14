@@ -8,7 +8,6 @@ use NewInventor\Form\Http\Method;
 use NewInventor\Form\Http\Methodable;
 use NewInventor\Form\Http\MethodsInterface;
 use NewInventor\Form\Interfaces\FormInterface;
-use NewInventor\Form\Renderer\FormRenderer;
 use NewInventor\TypeChecker\Exception\ArgumentException;
 use NewInventor\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\TypeChecker\TypeChecker;
@@ -58,26 +57,12 @@ class Form extends Block implements FormInterface, MethodsInterface
      * AbstractForm constructor.
      *
      * @param string $name
-     * @param string $title
-     * @param string $action
-     * @param string $method
-     * @param string $encType
-     *
      * @throws ArgumentException
      * @throws ArgumentTypeException
      */
-    public function __construct(
-        $name,
-        $action = '',
-        $method = 'post',
-        $title = '',
-        $encType = self::ENC_TYPE_URLENCODED
-    ) {
-        parent::__construct($name, $title);
+    public function __construct($name) {
+        parent::__construct($name);
         $this->availableMethods(Method::GET, Method::POST);
-        if (!is_null($action)) {
-            $this->action($action);
-        }
         $this->children()->setElementClasses([Block::getClass(), AbstractField::getClass()]);
     }
     

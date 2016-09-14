@@ -9,6 +9,11 @@ namespace NewInventor\Form\Abstraction;
 
 use NewInventor\ConfigTool\Config;
 
+/**
+ * Class BaseFactory
+ * @package NewInventor\Form\Abstraction
+ * @method mixed static make($object, ...$params)
+ */
 class BaseFactory extends Factory
 {
     protected $compiledConditions = '';
@@ -23,7 +28,7 @@ class BaseFactory extends Factory
     {
         $class = \stdClass::class;
         if($this->compiledConditions === ''){
-            static::compileConditions();
+            $this->compileConditions();
         }
         eval($this->compiledConditions);
 

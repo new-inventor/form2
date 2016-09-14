@@ -12,9 +12,8 @@ class RenderFactory extends BaseFactory
 {
     protected $name = 'render';
 
-    public function get($object, ...$params)
+    public function get($object, $params)
     {
-
         $class = $this->getClassForObject($object, $params);
 
         $reflector = new \ReflectionClass($class);

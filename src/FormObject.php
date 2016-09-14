@@ -220,7 +220,7 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
      */
     public function getString()
     {
-        return RenderFactory::make()->get($this)->getString();
+        return RenderFactory::make($this)->getString();
     }
     
     /** @inheritdoc */

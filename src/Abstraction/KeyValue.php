@@ -25,41 +25,32 @@ class KeyValue extends NamedObject
      *
      * @param string $name
      * @param string $value
-     * @param bool   $canBeShort
      *
      * @throws \Exception
      */
     public function __construct($name, $value = '')
     {
         parent::__construct($name);
-        $this->setValue($value);
-        $this->setCanBeShort(false);
+        $this->value($value);
+        $this->canBeShort(false);
     }
     
     /**
      * @return boolean
      */
-    public function canBeShort()
+    public function isCanBeShort()
     {
         return $this->canBeShort;
     }
 
     /**
+     * @param bool $short
+     *
      * @return $this
      */
-    public function short()
+    public function short($short = true)
     {
-        $this->canBeShort = true;
-        
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function full()
-    {
-        $this->canBeShort = false;
+        $this->canBeShort = $short;
         
         return $this;
     }
@@ -70,7 +61,7 @@ class KeyValue extends NamedObject
      * @return $this
      * @throws \Exception
      */
-    public function setCanBeShort($canBeShort)
+    public function canBeShort($canBeShort = true)
     {
         $typeChecker = TypeChecker::getInstance();
         if (!$typeChecker->isBool($canBeShort, 'canBeShort')) {
@@ -95,7 +86,7 @@ class KeyValue extends NamedObject
      * @return $this
      * @throws \Exception
      */
-    public function setValue($value)
+    public function value($value)
     {
         $typeChecker = TypeChecker::getInstance();
         if (!$typeChecker->check($value, [SimpleTypes::STRING, SimpleTypes::INT, SimpleTypes::FLOAT, SimpleTypes::NULL],
@@ -113,7 +104,7 @@ class KeyValue extends NamedObject
      */
     public function isValueEmpty()
     {
-        return empty($this->value);
+        return $this->value === '';
     }
 
     /**
@@ -131,10 +122,10 @@ class KeyValue extends NamedObject
         
         $pair = new KeyValue($data['name']);
         if (array_key_exists('value', $data)) {
-            $pair->setValue((string)$data['value']);
+            $pair->value((string)$data['value']);
         }
         if (array_key_exists('canBeShort', $data)) {
-            $pair->setCanBeShort((bool)$data['canBeShort']);
+            $pair->canBeShort((bool)$data['canBeShort']);
         }
         
         return $pair;

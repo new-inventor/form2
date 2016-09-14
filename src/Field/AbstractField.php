@@ -32,7 +32,7 @@ abstract class AbstractField extends FormObject implements FieldInterface
      * @param mixed $value
      * @throws \NewInventor\TypeChecker\Exception\ArgumentTypeException
      */
-    public function __construct($name, $value)
+    public function __construct($name, $value = '')
     {
         parent::__construct($name);
         $this->setValue($value);

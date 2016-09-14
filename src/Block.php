@@ -8,285 +8,81 @@
 namespace NewInventor\Form;
 
 use DeepCopy\DeepCopy;
+use NewInventor\ConfigTool\Config;
 use NewInventor\Form\Field\AbstractField;
-use NewInventor\Form\Field\CheckBox;
-use NewInventor\Form\Field\CheckBoxSet;
 use NewInventor\Form\Field\Input;
-use NewInventor\Form\Field\RadioSet;
-use NewInventor\Form\Field\Select;
-use NewInventor\Form\Field\TextArea;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
-use NewInventor\Form\Renderer\BlockRenderer;
 use NewInventor\TypeChecker\SimpleTypes;
 use NewInventor\TypeChecker\TypeChecker;
 
 /**
  * Class AbstractBlock
  * @package NewInventor\Form
+ * @method FieldInterface button($name, $value = '')
+ * @method FieldInterface checkBox($name, $value = false)
+ * @method FieldInterface file($name, $value = '')
+ * @method FieldInterface hidden($name, $value = '')
+ * @method FieldInterface image($name, $value = '')
+ * @method FieldInterface password($name, $value = '')
+ * @method FieldInterface radio($name, $value = '')
+ * @method FieldInterface radioSet($name, $value = '', $options = null)
+ * @method FieldInterface reset($name, $value = '')
+ * @method FieldInterface submit($name, $value = '')
+ * @method FieldInterface text($name, $value = '')
+ * @method FieldInterface color($name, $value = '')
+ * @method FieldInterface date($name, $value = '')
+ * @method FieldInterface datetime($name, $value = '')
+ * @method FieldInterface datetimeLocal($name, $value = '')
+ * @method FieldInterface email($name, $value = '')
+ * @method FieldInterface number($name, $value = '')
+ * @method FieldInterface range($name, $value = '')
+ * @method FieldInterface search($name, $value = '')
+ * @method FieldInterface tel($name, $value = '')
+ * @method FieldInterface time($name, $value = '')
+ * @method FieldInterface url($name, $value = '')
+ * @method FieldInterface month($name, $value = '')
+ * @method FieldInterface week($name, $value = '')
+ * @method FieldInterface select($name, $value = '', $options = [])
+ * @method FieldInterface textArea($name, $value = '')
+ * @method FieldInterface checkBoxSet($name, $value = '', $options = [])
  */
 class Block extends FormObject implements BlockInterface
 {
     private $repeatable;
-    
     private $repeatObject;
-    
-    /**
-     * AbstractBlock constructor.
-     *
-     * @param string $name
-     * @param string $title
-     */
-    public function __construct($name, $title = '')
-    {
-        parent::__construct($name, $title);
-    }
     
     /**
      * @inheritdoc
      */
-    public function block($name, $title = '')
+    public function block($name)
     {
-        $block = new Block($name, $title);
+        $block = new Block($name);
         $block->setParent($this);
         $this->children()->add($block);
         
         return $block;
     }
-    
+
     /**
-     * @inheritdoc
+     * @param $name
+     * @param $params
+     *
+     * @return FieldInterface
+     * @throws \BadMethodCallException
      */
-    public function button($name, $value = '')
+    public function __call($name, $params)
     {
-        return $this->addInputField('button', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function checkbox($name, $value = false)
-    {
-        $checkbox = new CheckBox($name, $value);
-        
-        return $this->field($checkbox);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function file($name, $value = '')
-    {
-        return $this->addInputField('file', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function hidden($name, $value = '')
-    {
-        return $this->addInputField('hidden', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function image($name, $value = '')
-    {
-        return $this->addInputField('image', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function password($name, $value = '')
-    {
-        return $this->addInputField('password', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function radio($name, $value = '')
-    {
-        return $this->addInputField('radio', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function radioSet($name, $value = '')
-    {
-        $set = new RadioSet($name, $value);
-        $this->field($set);
-        
-        return $set;
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function reset($name, $value = '')
-    {
-        return $this->addInputField('reset', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function submit($name, $value = '')
-    {
-        return $this->addInputField('submit', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function text($name, $value = '')
-    {
-        return $this->addInputField('text', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function color($name, $value = '')
-    {
-        return $this->addInputField('color', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function date($name, $value = '')
-    {
-        return $this->addInputField('date', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function datetime($name, $value = '')
-    {
-        return $this->addInputField('datetime', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function datetimeLocal($name, $value = '')
-    {
-        return $this->addInputField('datetimeLocal', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function email($name, $value = '')
-    {
-        return $this->addInputField('email', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function number($name, $value = '')
-    {
-        return $this->addInputField('number', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function range($name, $value = '')
-    {
-        return $this->addInputField('range', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function search($name, $value = '')
-    {
-        return $this->addInputField('search', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function tel($name, $value = '')
-    {
-        return $this->addInputField('tel', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function time($name, $value = '')
-    {
-        return $this->addInputField('time', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function url($name, $value = '')
-    {
-        return $this->addInputField('url', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function month($name, $value = '')
-    {
-        return $this->addInputField('month', $name, $value);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function week($name, $value = '')
-    {
-        return $this->addInputField('week', $name, $value);
-    }
-    
-    protected function addInputField($type, $name, $value)
-    {
-        $field = new Input($name, $value);
-        $field->attribute('type', $type);
-        
+        if(Config::exist(['field', $name])){
+            $reflector = new \ReflectionClass(Config::get(['field', $name]));
+            /** @var FieldInterface $field */
+            $field = $reflector->newInstanceArgs($params);
+        }else{
+            $reflector = new \ReflectionClass(Input::class);
+            $field = $reflector->newInstanceArgs($params);
+            $field->attribute('type', strtolower($name));
+        }
         return $this->field($field);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function select($name, $value = null)
-    {
-        $select = new Select($name, $value, '');
-        
-        return $this->field($select);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function textArea($name, $value = '')
-    {
-        $textArea = new TextArea($name, $value);
-        
-        return $this->field($textArea);
-    }
-    
-    /**
-     * @inheritdoc
-     */
-    public function checkBoxSet($name, $value = null)
-    {
-        $checkBoxSet = new CheckBoxSet($name, $value);
-        
-        return $this->field($checkBoxSet);
     }
     
     /**

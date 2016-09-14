@@ -9,7 +9,5 @@ namespace NewInventor\Form\Interfaces;
 
 interface FactoryInterface
 {
-    public static function make();
-
-    public function get($object, ...$params);
+    public static function make($object, ...$params);
 }
