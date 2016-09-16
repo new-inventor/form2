@@ -2,7 +2,7 @@
 
 namespace NewInventor\Form\Renderer;
 
-use NewInventor\Abstractions\Interfaces\ObjectInterface;
+use NewInventor\Form\Abstractions\Interfaces\ObjectInterface;
 
 interface RendererInterface
 {

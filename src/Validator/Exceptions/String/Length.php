@@ -8,7 +8,7 @@
 namespace NewInventor\Form\Validator\Exceptions\String;
 
 
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class Length extends Base
 {

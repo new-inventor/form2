@@ -9,8 +9,8 @@
 namespace NewInventor\Form\Field;
 
 
-use NewInventor\TypeChecker\SimpleTypes;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\SimpleTypes;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class CheckBox extends AbstractField
 {

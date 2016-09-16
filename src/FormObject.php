@@ -2,10 +2,10 @@
 
 namespace NewInventor\Form;
 
-use NewInventor\Abstractions\Interfaces\ObjectListInterface;
-use NewInventor\Abstractions\NamedObject;
-use NewInventor\Abstractions\NamedObjectList;
-use NewInventor\Form\Abstraction\KeyValue;
+use NewInventor\Form\Abstractions\Interfaces\ObjectListInterface;
+use NewInventor\Form\Abstractions\NamedObject;
+use NewInventor\Form\Abstractions\NamedObjectList;
+use NewInventor\Form\Abstractions\KeyValue;
 use NewInventor\Form\Field\AbstractField;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
@@ -14,8 +14,8 @@ use NewInventor\Form\Interfaces\FormObjectInterface;
 use NewInventor\Form\Renderer\RenderableInterface;
 use NewInventor\Form\Renderer\RenderFactory;
 use NewInventor\Form\Validator\Interfaces\ValidatableInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 abstract class FormObject extends NamedObject implements FormObjectInterface, ValidatableInterface , RenderableInterface
 {
@@ -37,7 +37,9 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
     protected $validated = false;
     /** @var string|null */
     protected $fullName = null;
-    
+
+    protected $view = null;
+
     const DEFAULT_TEMPLATE = 'default';
     
     /**
@@ -334,5 +336,10 @@ abstract class FormObject extends NamedObject implements FormObjectInterface, Va
     public function getTemplate()
     {
         return $this->templateName;
+    }
+
+    public function view($view)
+    {
+        $this->view = $view;
     }
 }

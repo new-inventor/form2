@@ -9,8 +9,8 @@
 namespace NewInventor\Form\Accessor;
 
 
-use NewInventor\TypeChecker\SimpleTypes;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\SimpleTypes;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class ArrayAccessor implements AccessorInterface
 {
@@ -43,7 +43,7 @@ class ArrayAccessor implements AccessorInterface
     /**
      * @param string|int|array $name
      *
-     * @throws \NewInventor\TypeChecker\Exception\ArgumentTypeException
+     * @throws \NewInventor\Form\TypeChecker\Exception\ArgumentTypeException
      */
     protected function checkNameType($name)
     {

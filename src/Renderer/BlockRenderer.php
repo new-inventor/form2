@@ -10,12 +10,12 @@ namespace NewInventor\Form\Renderer;
 
 
 use DeepCopy\DeepCopy;
-use NewInventor\Abstractions\Interfaces\ObjectInterface;
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\Abstractions\Interfaces\ObjectInterface;
+use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\Renderer\Traits;
-use NewInventor\Template\Template;
+use NewInventor\Form\Template\Template;
 
 /**
  * Class BlockRenderer

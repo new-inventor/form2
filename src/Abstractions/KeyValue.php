@@ -5,13 +5,13 @@
  * Time: 16:21
  */
 
-namespace NewInventor\Form\Abstraction;
+namespace NewInventor\Form\Abstractions;
 
 
-use NewInventor\Abstractions\NamedObject;
-use NewInventor\TypeChecker\Exception\ArgumentException;
-use NewInventor\TypeChecker\SimpleTypes;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\Abstractions\NamedObject;
+use NewInventor\Form\TypeChecker\Exception\ArgumentException;
+use NewInventor\Form\TypeChecker\SimpleTypes;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class KeyValue extends NamedObject
 {
@@ -21,7 +21,7 @@ class KeyValue extends NamedObject
     private $canBeShort;
 
     /**
-     * KeyValuePair constructor.
+     * KeyValue constructor.
      *
      * @param string $name
      * @param string $value

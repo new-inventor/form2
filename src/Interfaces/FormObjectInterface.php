@@ -3,9 +3,9 @@
 namespace NewInventor\Form\Interfaces;
 
 
-use NewInventor\Abstractions\Interfaces\NamedObjectInterface;
-use NewInventor\Abstractions\Interfaces\ObjectListInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\Abstractions\Interfaces\NamedObjectInterface;
+use NewInventor\Form\Abstractions\Interfaces\ObjectListInterface;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 interface FormObjectInterface extends NamedObjectInterface
 {

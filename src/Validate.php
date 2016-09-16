@@ -7,9 +7,9 @@
 namespace NewInventor\Form;
 
 
-use NewInventor\Abstractions\Interfaces\ObjectListInterface;
+use NewInventor\Form\Abstractions\Interfaces\ObjectListInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 trait Validate
 {

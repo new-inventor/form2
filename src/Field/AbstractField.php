@@ -7,15 +7,15 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\Abstractions\Interfaces\ObjectListInterface;
-use NewInventor\Abstractions\ObjectList;
+use NewInventor\Form\Abstractions\Interfaces\ObjectListInterface;
+use NewInventor\Form\Abstractions\ObjectList;
 use NewInventor\Form\FormObject;
 use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
 use NewInventor\Form\Validator\ValidatorFactory;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\SimpleTypes;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\SimpleTypes;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 abstract class AbstractField extends FormObject implements FieldInterface
 {
@@ -30,11 +30,12 @@ abstract class AbstractField extends FormObject implements FieldInterface
      * AbstractField constructor.
      * @param string $name
      * @param mixed $value
-     * @throws \NewInventor\TypeChecker\Exception\ArgumentTypeException
+     * @throws \NewInventor\Form\TypeChecker\Exception\ArgumentTypeException
      */
     public function __construct($name, $value = '')
     {
         parent::__construct($name);
+        $this->attribute('id', $name);
         $this->setValue($value);
         $this->validators = new ObjectList([ValidatorInterface::class]);
     }

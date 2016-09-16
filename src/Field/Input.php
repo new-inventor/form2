@@ -2,7 +2,7 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\Form\Abstraction\KeyValue;
+use NewInventor\Form\Abstractions\KeyValue;
 
 class Input extends AbstractField
 {

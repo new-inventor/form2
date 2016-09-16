@@ -6,7 +6,7 @@
  * Time: 22:02
  */
 
-namespace NewInventor\Form\Abstraction;
+namespace NewInventor\Form\Abstractions;
 
 
 use NewInventor\Form\Interfaces\FactoryInterface;

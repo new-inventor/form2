@@ -6,7 +6,7 @@
  * Time: 10:13
  */
 
-namespace NewInventor\Form\Abstraction;
+namespace NewInventor\Form\Abstractions;
 
 
 use NewInventor\Form\Accessor\ArrayAccessor;

@@ -7,9 +7,9 @@
 namespace NewInventor\Form\Validator;
 
 
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
-use NewInventor\TypeChecker\Exception\ArgumentException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentException;
 
 class ValidatorFactory
 {

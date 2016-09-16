@@ -8,13 +8,13 @@
 namespace NewInventor\Form;
 
 use DeepCopy\DeepCopy;
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Field\AbstractField;
 use NewInventor\Form\Field\Input;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
-use NewInventor\TypeChecker\SimpleTypes;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\SimpleTypes;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 /**
  * Class AbstractBlock

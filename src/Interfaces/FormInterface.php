@@ -3,7 +3,7 @@
 namespace NewInventor\Form\Interfaces;
 
 
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 interface FormInterface extends BlockInterface
 {

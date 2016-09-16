@@ -7,7 +7,7 @@
 
 namespace NewInventor\Form\Validator\Interfaces;
 
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 interface ValidatorInterface
 {

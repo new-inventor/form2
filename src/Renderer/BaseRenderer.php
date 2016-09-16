@@ -7,9 +7,9 @@
 
 namespace NewInventor\Form\Renderer;
 
-use NewInventor\Abstractions\Interfaces\ObjectInterface;
-use NewInventor\Abstractions\Object;
-use NewInventor\Patterns\SingletonTrait;
+use NewInventor\Form\Abstractions\Interfaces\ObjectInterface;
+use NewInventor\Form\Abstractions\Object;
+use NewInventor\Form\Patterns\SingletonTrait;
 
 class BaseRenderer extends Object implements RendererInterface
 {

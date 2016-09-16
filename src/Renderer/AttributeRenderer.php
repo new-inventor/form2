@@ -9,10 +9,10 @@
 namespace NewInventor\Form\Renderer;
 
 
-use NewInventor\Abstractions\Interfaces\ObjectInterface;
-use NewInventor\ConfigTool\Config;
-use NewInventor\Form\Abstraction\KeyValue;
-use NewInventor\Template\Template;
+use NewInventor\Form\Abstractions\Interfaces\ObjectInterface;
+use NewInventor\Form\ConfigTool\Config;
+use NewInventor\Form\Abstractions\KeyValue;
+use NewInventor\Form\Template\Template;
 
 class AttributeRenderer extends BaseRenderer
 {

@@ -9,12 +9,12 @@
 namespace NewInventor\Form\Renderer;
 
 
-use NewInventor\Abstractions\Interfaces\ObjectInterface;
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\Abstractions\Interfaces\ObjectInterface;
+use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Form;
 use NewInventor\Form\Interfaces\FormInterface;
 use NewInventor\Form\Renderer\Traits;
-use NewInventor\Template\Template;
+use NewInventor\Form\Template\Template;
 
 class FormRenderer extends BaseRenderer
 {

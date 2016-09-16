@@ -8,8 +8,8 @@
 namespace NewInventor\Form\Validator\Exceptions;
 
 
-use NewInventor\Template\Template;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\Template\Template;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class Base extends \Exception
 {

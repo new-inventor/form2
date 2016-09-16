@@ -7,10 +7,10 @@
 
 namespace NewInventor\Form\Validator;
 
-use NewInventor\Abstractions\Object;
+use NewInventor\Form\Abstractions\Object;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class AbstractValidator extends Object implements ValidatorInterface
 {

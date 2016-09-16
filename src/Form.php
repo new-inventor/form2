@@ -2,15 +2,15 @@
 
 namespace NewInventor\Form;
 
-use NewInventor\Form\Abstraction\KeyValue;
+use NewInventor\Form\Abstractions\KeyValue;
 use NewInventor\Form\Field\AbstractField;
 use NewInventor\Form\Http\Method;
 use NewInventor\Form\Http\Methodable;
 use NewInventor\Form\Http\MethodsInterface;
 use NewInventor\Form\Interfaces\FormInterface;
-use NewInventor\TypeChecker\Exception\ArgumentException;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 //TODO сделать настраиваемое положение ошибок
 //TODO AJAX send(by change, by submit)

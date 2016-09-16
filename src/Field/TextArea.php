@@ -7,8 +7,8 @@
 
 namespace NewInventor\Form\Field;
 
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class TextArea extends AbstractField
 {

@@ -5,7 +5,7 @@ namespace NewInventor\Form\Interfaces;
 use NewInventor\Form\Renderer\RenderableInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatableInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 interface FieldInterface extends FormObjectInterface, RenderableInterface, ValidatableInterface
 {

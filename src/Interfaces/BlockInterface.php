@@ -7,7 +7,7 @@ use NewInventor\Form\Field\TextArea;
 use NewInventor\Form\Field\CheckBoxSet;
 use NewInventor\Form\Renderer\RenderableInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatableInterface;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
 interface BlockInterface extends FormObjectInterface, RenderableInterface, ValidatableInterface
 {

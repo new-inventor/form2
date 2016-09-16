@@ -9,11 +9,11 @@
 namespace NewInventor\Form\Renderer\Traits;
 
 
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
-use NewInventor\Template\Template;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\Template\Template;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 /**
  * Class Repeatable

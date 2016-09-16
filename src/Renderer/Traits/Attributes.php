@@ -9,7 +9,7 @@
 namespace NewInventor\Form\Renderer\Traits;
 
 
-use NewInventor\Form\Abstraction\KeyValue;
+use NewInventor\Form\Abstractions\KeyValue;
 use NewInventor\Form\Interfaces\FormObjectInterface;
 use NewInventor\Form\Renderer\AttributeRenderer;
 

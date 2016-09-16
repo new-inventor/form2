@@ -9,8 +9,8 @@ namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
 use NewInventor\Form\Validator\Exceptions\String;
-use NewInventor\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\TypeChecker\TypeChecker;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
+use NewInventor\Form\TypeChecker\TypeChecker;
 
 class StringValidator extends AbstractValidator
 {

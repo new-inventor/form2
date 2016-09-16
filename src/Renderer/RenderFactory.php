@@ -6,7 +6,7 @@
 
 namespace NewInventor\Form\Renderer;
 
-use NewInventor\Form\Abstraction\BaseFactory;
+use NewInventor\Form\Abstractions\BaseFactory;
 
 class RenderFactory extends BaseFactory
 {

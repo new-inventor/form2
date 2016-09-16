@@ -7,7 +7,7 @@
 namespace NewInventor\Form\Field;
 
 
-use NewInventor\Form\Abstraction\BaseFactory;
+use NewInventor\Form\Abstractions\BaseFactory;
 use NewInventor\Form\Interfaces\FieldInterface;
 
 /**

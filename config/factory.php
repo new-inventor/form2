@@ -7,7 +7,7 @@ return [
         \NewInventor\Form\Renderer\FormRenderer::class => [['is_a|$$|"' . \NewInventor\Form\Interfaces\FormInterface::class . '"']],
         \NewInventor\Form\Renderer\FieldRenderer::class => [['is_a|$$|"' . \NewInventor\Form\Interfaces\FieldInterface::class . '"']],
         \NewInventor\Form\Renderer\BlockRenderer::class => [['is_a|$$|"' . \NewInventor\Form\Interfaces\BlockInterface::class . '"']],
-        \NewInventor\Form\Renderer\AttributeRenderer::class => [['is_a|$$|"' . \NewInventor\Form\Abstraction\KeyValue::class . '"']],
+        \NewInventor\Form\Renderer\AttributeRenderer::class => [['is_a|$$|"' . \NewInventor\Form\Abstractions\KeyValue::class . '"']],
     ],
     'validator' => [
         \NewInventor\Form\Validator\Validators\EmailValidator::class => 'email',

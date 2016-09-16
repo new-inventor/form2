@@ -4,10 +4,10 @@
  * Time: 13:06
  */
 
-namespace NewInventor\Form\Abstraction;
+namespace NewInventor\Form\Abstractions;
 
 
-use NewInventor\ConfigTool\Config;
+use NewInventor\Form\ConfigTool\Config;
 
 /**
  * Class BaseFactory
