@@ -5,7 +5,7 @@
  * Time: 16:51
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
 use NewInventor\Form\TypeChecker\TypeChecker;

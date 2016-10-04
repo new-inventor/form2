@@ -5,14 +5,14 @@
  * Time: 17:00
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
-use NewInventor\Form\Validator\Exceptions\String\Traits\MaxLengthTrait;
+//use NewInventor\Form\Validator\Exceptions\Str\Traits\MaxLengthTrait;
 
 class MaxLength extends Base
 {
-    use MaxLengthTrait;
+    //use MaxLengthTrait;
     /**
      * Base constructor.
      * @param string $objectName
@@ -21,7 +21,7 @@ class MaxLength extends Base
      */
     public function __construct($objectName, $maxLength, $message = '')
     {
-        $this->setMaxLength($maxLength);
+        //$this->setMaxLength($maxLength);
         parent::__construct($objectName, $message);
     }
     

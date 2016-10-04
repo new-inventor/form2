@@ -5,7 +5,7 @@
  * Time: 16:48
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
 class Base extends \NewInventor\Form\Validator\Exceptions\Base

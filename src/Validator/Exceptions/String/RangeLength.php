@@ -5,16 +5,16 @@
  * Time: 17:00
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
-use NewInventor\Form\Validator\Exceptions\String\Traits\MinLengthTrait;
-use NewInventor\Form\Validator\Exceptions\String\Traits\MaxLengthTrait;
+//use NewInventor\Form\Validator\Exceptions\Str\Traits\MinLengthTrait;
+//use NewInventor\Form\Validator\Exceptions\Str\Traits\MaxLengthTrait;
 
 class RangeLength extends Base
 {
-    use MinLengthTrait;
-    use MaxLengthTrait;
+    //use MinLengthTrait;
+    //use MaxLengthTrait;
     /**
      * Base constructor.
      * @param string $objectName
@@ -24,8 +24,8 @@ class RangeLength extends Base
      */
     public function __construct($objectName, $minLength, $maxLength, $message = '')
     {
-        $this->setMinLength($minLength);
-        $this->setMaxLength($maxLength);
+//        $this->setMinLength($minLength);
+//        $this->setMaxLength($maxLength);
         parent::__construct($objectName, $message);
     }
     

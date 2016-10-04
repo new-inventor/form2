@@ -9,11 +9,11 @@ namespace NewInventor\Form\Validator\Exceptions\Integer;
 
 
 use NewInventor\Form\Validator\Exceptions\Base;
-use NewInventor\Form\Validator\Exceptions\Integer\Traits\MinTrait;
+//use NewInventor\Form\Validator\Exceptions\Integer\Traits\MinTrait;
 
 class Min extends Base
 {
-    use MinTrait;
+    //use MinTrait;
     
     /**
      * Base constructor.
@@ -23,7 +23,7 @@ class Min extends Base
      */
     public function __construct($objectName, $minValue, $message = '')
     {
-        $this->setMin($minValue);
+        //$this->setMin($minValue);
         parent::__construct($objectName, $message);
     }
     

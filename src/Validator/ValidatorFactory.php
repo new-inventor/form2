@@ -7,25 +7,35 @@
 namespace NewInventor\Form\Validator;
 
 
-use NewInventor\Form\ConfigTool\Config;
+use NewInventor\Form\Abstractions\BaseFactory;
+use NewInventor\Form\TypeChecker\TypeCheck;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
-use NewInventor\Form\TypeChecker\Exception\ArgumentException;
+use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 
-class ValidatorFactory
+class ValidatorFactory extends BaseFactory
 {
+    use TypeCheck;
 
+    /**
+     * @param $validator
+     * @param array ...$params
+     * @return ValidatorInterface|null
+     * @throws \InvalidArgumentException
+     * @throws ArgumentTypeException
+     */
     public function get($validator, ...$params)
     {
-        $validatorObj = null;
+        $this->param()->string()->types(ValidatorInterface::class, \Closure::class)->fail();
+        $class = '';
         if (is_string($validator)) {
-            $class = self::getClassForObject($validator);
+            $class = $this->getClassForObject($validator);
         } elseif ($validator instanceof \Closure) {
             $class = AbstractValidator::class;
         } elseif ($validator instanceof ValidatorInterface) {
             return $validator;
-        } else {
-            throw new ArgumentException('Передан неправильный валидатор.', 'validatorName');
         }
+
+        $validatorObj = null;
         /** @var ValidatorInterface $validatorObj */
         $validatorObj = new $class($params);
         $validatorObj->setOptions($params);
@@ -36,18 +46,18 @@ class ValidatorFactory
     /**
      * @param $validatorName
      * @return string
-     * @throws ArgumentException
+     * @throws ArgumentTypeException
+     * @throws \InvalidArgumentException
      */
-    protected static function getClassForObject($validatorName)
+    protected function getClassForObject($validatorName)
     {
-        $validatorClass = Config::get(['validator', $validatorName]);
+        $validatorClass = parent::getClassForObject($validatorName);
         if (class_exists($validatorClass) &&
             in_array(ValidatorInterface::class, class_implements($validatorClass), true)
         ) {
-            /** @var ValidatorInterface $validatorObj */
             return $validatorClass;
         } else {
-            throw new ArgumentException('Класс для валидатора не найден.', 'validatorName');
+            throw new \InvalidArgumentException('Класс для валидатора не найден.');
         }
     }
 

@@ -7,8 +7,8 @@ use NewInventor\Form\Field\AbstractField;
 use NewInventor\Form\Http\Method;
 use NewInventor\Form\Http\Methodable;
 use NewInventor\Form\Http\MethodsInterface;
+use NewInventor\Form\Interfaces\Arrayable;
 use NewInventor\Form\Interfaces\FormInterface;
-use NewInventor\Form\TypeChecker\Exception\ArgumentException;
 use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\Form\TypeChecker\TypeChecker;
 

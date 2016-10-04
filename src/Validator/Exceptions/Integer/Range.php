@@ -9,12 +9,12 @@ namespace NewInventor\Form\Validator\Exceptions\Integer;
 
 
 use NewInventor\Form\Validator\Exceptions\Base;
-use NewInventor\Form\Validator\Exceptions\Integer\Traits;
+//use NewInventor\Form\Validator\Exceptions\Integer\Traits;
 
 class Range extends Base
 {
-    use Traits\MinTrait;
-    use Traits\MaxTrait;
+    //use Traits\MinTrait;
+    //use Traits\MaxTrait;
     
     /**
      * Base constructor.
@@ -25,8 +25,8 @@ class Range extends Base
      */
     public function __construct($objectName, $minValue, $maxValue, $message = '')
     {
-        $this->setMin($minValue);
-        $this->setMax($maxValue);
+        //$this->setMin($minValue);
+        //$this->setMax($maxValue);
         parent::__construct($objectName, $message);
     }
     

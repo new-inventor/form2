@@ -8,6 +8,6 @@
 namespace NewInventor\Form\Exceptions;
 
 
-class FormBadDataException extends \Exception
+class FormBadDataException extends StringableException
 {
 }

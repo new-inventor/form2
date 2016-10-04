@@ -5,14 +5,14 @@
  * Time: 17:00
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
-use NewInventor\Form\Validator\Exceptions\String\Traits\MinLengthTrait;
+//use NewInventor\Form\Validator\Exceptions\Str\Traits\MinLengthTrait;
 
 class MinLength extends Base
 {
-    use MinLengthTrait;
+    //use MinLengthTrait;
     /**
      * Base constructor.
      * @param string $objectName
@@ -21,7 +21,7 @@ class MinLength extends Base
      */
     public function __construct($objectName, $minLength, $message = '')
     {
-        $this->setMinLength($minLength);
+        //$this->setMinLength($minLength);
         parent::__construct($objectName, $message);
     }
     

@@ -5,7 +5,7 @@
  * Time: 17:00
  */
 
-namespace NewInventor\Form\Validator\Exceptions\String;
+namespace NewInventor\Form\Validator\Exceptions\Str;
 
 
 class Regexp extends Base

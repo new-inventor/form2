@@ -11,6 +11,7 @@ use DeepCopy\DeepCopy;
 use NewInventor\Form\ConfigTool\Config;
 use NewInventor\Form\Field\AbstractField;
 use NewInventor\Form\Field\Input;
+use NewInventor\Form\Interfaces\Arrayable;
 use NewInventor\Form\Interfaces\BlockInterface;
 use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\TypeChecker\SimpleTypes;
@@ -47,7 +48,7 @@ use NewInventor\Form\TypeChecker\TypeChecker;
  * @method FieldInterface textArea($name, $value = '')
  * @method FieldInterface checkBoxSet($name, $value = '', $options = [])
  */
-class Block extends FormObject implements BlockInterface
+class Block extends FormObject implements BlockInterface, Arrayable
 {
     private $repeatable;
     private $repeatObject;
@@ -246,5 +247,15 @@ class Block extends FormObject implements BlockInterface
     public function setRepeatObject($repeatObject)
     {
         $this->repeatObject = $repeatObject;
+    }
+
+    /**
+     * @param array $data
+     * @return static
+     * @throws \NewInventor\Form\TypeChecker\Exception\ArgumentTypeException
+     */
+    public static function fromArray(array $data)
+    {
+        return new static($data['name'], $data['value']);
     }
 }

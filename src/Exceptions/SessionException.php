@@ -8,7 +8,7 @@
 namespace NewInventor\Form\Exceptions;
 
 
-class SessionException extends \Exception
+class SessionException extends StringableException
 {
     /** @inheritdoc */
     public function __construct($message = '', $code = 0, $previous = null)

@@ -24,27 +24,29 @@ class BaseFactory extends Factory
     /**
      * @inheritdoc
      */
-    protected function getClassForObject($object, $params)
+    protected function getClassForObject($object, $params = [])
     {
         $class = \stdClass::class;
         if($this->compiledConditions === ''){
-            $this->compileConditions();
+            $this->compileConditions($object);
         }
         eval($this->compiledConditions);
 
         return $class;
     }
 
-    protected function compileConditions()
+    protected function compileConditions($object)
     {
         $conditions = '';
         $last = '';
-        foreach(Config::get(['factory', $this->name], []) as $class => $condition){
+        /** @var array $config */
+        $config = Config::get(['factory', $this->name], []);
+        foreach($config as $class => $condition){
             if($condition === null){
                 $last = "else { \$class = '$class'; }";
                 continue;
             }
-            $conditionString = static::compileCondition($condition);
+            $conditionString = $this->compileCondition($condition);
             if($conditions === ''){
                 $conditions .= "if ($conditionString) { \$class = '$class'; }\n";
             }else {

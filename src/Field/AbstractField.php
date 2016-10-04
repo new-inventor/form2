@@ -10,17 +10,17 @@ namespace NewInventor\Form\Field;
 use NewInventor\Form\Abstractions\Interfaces\ObjectListInterface;
 use NewInventor\Form\Abstractions\ObjectList;
 use NewInventor\Form\FormObject;
+use NewInventor\Form\Interfaces\Arrayable;
 use NewInventor\Form\Interfaces\FieldInterface;
 use NewInventor\Form\Validator\Interfaces\ValidatorInterface;
 use NewInventor\Form\Validator\ValidatorFactory;
 use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
-use NewInventor\Form\TypeChecker\SimpleTypes;
 use NewInventor\Form\TypeChecker\TypeChecker;
 
-abstract class AbstractField extends FormObject implements FieldInterface
+abstract class AbstractField extends FormObject implements FieldInterface, Arrayable
 {
     /** @var array|string|null */
-    private $value;
+    protected $value;
     /** @var \Iterator|ObjectListInterface */
     protected $validators;
     /** @var bool */
@@ -156,5 +156,10 @@ abstract class AbstractField extends FormObject implements FieldInterface
     public function isRepeatable()
     {
         return $this->getParent() !== null && $this->getParent()->isRepeatableContainer();
+    }
+
+    public static function fromArray(array $data)
+    {
+        return new static($data['name'], $data['value']);
     }
 }

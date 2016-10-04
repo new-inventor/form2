@@ -8,7 +8,7 @@
 namespace NewInventor\Form\Validator\Validators;
 
 use NewInventor\Form\Validator\AbstractValidator;
-use NewInventor\Form\Validator\Exceptions\String;
+use NewInventor\Form\Validator\Exceptions\Str;
 use NewInventor\Form\TypeChecker\Exception\ArgumentTypeException;
 use NewInventor\Form\TypeChecker\TypeChecker;
 
@@ -38,27 +38,27 @@ class StringValidator extends AbstractValidator
     public function validateValue($value)
     {
         if (!is_string($value)) {
-            throw new String\Base($this->objectName, $this->message);
+            throw new Str\Base($this->objectName, $this->message);
         }
         if (mb_strlen($value) == 0) {
             return true;
         }
         if (!is_null($this->length) && mb_strlen($value) !== $this->length) {
-            throw new String\Length($this->objectName, $this->length, $this->lengthMessage);
+            throw new Str\Length($this->objectName, $this->length, $this->lengthMessage);
         }
         if (!is_null($this->maxLength) && !is_null($this->minLength) && (mb_strlen($value) > $this->maxLength || mb_strlen($value) < $this->minLength)) {
-            throw new String\RangeLength($this->objectName, $this->minLength, $this->maxLength, $this->rangeLengthMessage);
+            throw new Str\RangeLength($this->objectName, $this->minLength, $this->maxLength, $this->rangeLengthMessage);
         }
         if (!is_null($this->minLength) && mb_strlen($value) < $this->minLength) {
-            throw new String\MinLength($this->objectName, $this->minLength, $this->minLengthMessage);
+            throw new Str\MinLength($this->objectName, $this->minLength, $this->minLengthMessage);
         }
         if (!is_null($this->maxLength) && mb_strlen($value) > $this->maxLength) {
-            throw new String\MaxLength($this->objectName, $this->maxLength, $this->maxLengthMessage);
+            throw new Str\MaxLength($this->objectName, $this->maxLength, $this->maxLengthMessage);
         }
         if (!is_null($this->regexp)) {
             preg_match($this->regexp, $value, $matches);
             if (count($matches) > 1 || empty($matches)) {
-                throw new String\Regexp($this->objectName, $this->regexpMessage);
+                throw new Str\Regexp($this->objectName, $this->regexpMessage);
             }
         }
         

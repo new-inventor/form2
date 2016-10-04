@@ -33,7 +33,7 @@ class TypeChecker
 
     protected $value;
     protected $index;
-    
+
     protected $isValid = false;
     protected $inner = false;
 
@@ -44,7 +44,7 @@ class TypeChecker
      * NewTypeChecker constructor.
      *
      * @param array $backTraceData
-     * @param int   $paramIndex
+     * @param int $paramIndex
      */
     public function __construct(array $backTraceData, $paramIndex)
     {
@@ -59,12 +59,26 @@ class TypeChecker
 
     public function __call($name, array $arguments)
     {
-        if($this->inner){
+        if ($this->inner) {
             return $this->checkSimpleArray($name);
         }
         return $this->checkSimple($name);
     }
 
+    /**
+     * @param callable $callback
+     * @return $this
+     */
+    public function callback(callable $callback)
+    {
+        $this->isValid = $this->isValid || $callback($this->value);
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
     protected function checkSimple($name)
     {
         $method = "is_$name";
@@ -73,12 +87,16 @@ class TypeChecker
         return $this;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     protected function checkSimpleArray($name)
     {
         $method = "is_$name";
         $this->innerTypes[] = $name;
         $res = true;
-        foreach($this->value as $item){
+        foreach ($this->value as $item) {
             $res = $res && $method($item);
         }
         $this->isValid = $this->isValid || $res;
@@ -106,14 +124,14 @@ class TypeChecker
             return $this;
         }
 
-        if($this->inner){
+        if ($this->inner) {
             $res = true;
             $this->innerTypes = array_merge($this->innerTypes, $types);
-            foreach($this->value as $item){
+            foreach ($this->value as $item) {
                 $res = $res && $this->checkValueTypes($item, $types);
             }
             $this->isValid = $this->isValid || $res;
-        }else {
+        } else {
             $this->types = array_merge($this->types, $types);
             $this->isValid = $this->isValid || $this->checkValueTypes($this->value, $types);
         }
@@ -127,7 +145,7 @@ class TypeChecker
         foreach ($types as $type) {
             $res = $res || is_a($value, $type);
         }
-        
+
         return $res;
     }
 
@@ -136,7 +154,7 @@ class TypeChecker
      */
     public function fail()
     {
-        if(!$this->isValid){
+        if (!$this->isValid) {
             throw new ArgumentTypeException($this);
         }
     }

@@ -9,11 +9,11 @@ namespace NewInventor\Form\Validator\Exceptions\Integer;
 
 
 use NewInventor\Form\Validator\Exceptions\Base;
-use NewInventor\Form\Validator\Exceptions\Integer\Traits\MaxTrait;
+//use NewInventor\Form\Validator\Exceptions\Integer\Traits\MaxTrait;
 
 class Max extends Base
 {
-    use MaxTrait;
+    //use MaxTrait;
     
     /**
      * Base constructor.
@@ -23,7 +23,7 @@ class Max extends Base
      */
     public function __construct($objectName, $maxValue, $message = '')
     {
-        $this->setMax($maxValue);
+        //$this->setMax($maxValue);
         parent::__construct($objectName, $message);
     }
     
